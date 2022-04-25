@@ -1,14 +1,14 @@
 # CRYPORTFOLIO
  
-#### Cryptocurrency portfolio tracking for EZIL mining pool, Binance and FTX exchanges.
+Cryptocurrency portfolio tracking for EZIL mining pool, Binance and FTX exchanges.
 
 ## Getting Started
 
-#### Install:
+### Install:
 ```
 npm install --save
 ```
-#### Required configuration for .env:
+### Required configuration for .env:
 
 ```
 // FTX API KEYS
@@ -23,12 +23,12 @@ VUE_APP_BINANCE_API_KEY=APIKEY_KEY_HERE
 VUE_APP_BINANCE_ETH_WALLET=ETH_WALLET_HERE
 VUE_APP_BINANCE_ZIL_WALLET=ZIL_WALLET_HERE
 ```
-#### Serve:
+### Serve:
 ```
 npm run serve
 ```
 
-#### Build for Production:
+### Build for Production:
 ```
 npm run build
 ```
