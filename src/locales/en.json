@@ -1,0 +1,19 @@
+{
+  "exchange": {
+    "quantity": "",
+    "grandtotal": "Grand Total:"
+  },
+  "about": {
+    "welcome": "Welcome to the About page!"
+  },
+  "main": {
+    "new_message": "no messages | one message | {count} messages",
+    "welcome": "Hello from {company}!"
+  },
+  "menu": {
+    "portfolio": "Portfolio",
+    "home": "Home",
+    "tr": "Turkish",
+    "en": "English"
+  }
+}

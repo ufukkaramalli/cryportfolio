@@ -1,6 +1,6 @@
 module.exports = {
   transpileDependencies: [
-    'vuetify'
+    'i18n'
   ],
   pwa: {
     name: 'Binance',
@@ -8,11 +8,11 @@ module.exports = {
   },
   pluginOptions: {
     i18n: {
-      locale: 'ja',
-      fallbackLocale: 'en',
-      localeDir: 'locales',
-      enableInSFC: false,
-      enableLegacy: false
+      locale: undefined,
+      fallbackLocale: undefined,
+      localeDir: undefined,
+      enableInSFC: undefined,
+      enableBridge: undefined
     }
   }
 }

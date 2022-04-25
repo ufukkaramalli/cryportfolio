@@ -3,8 +3,8 @@
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light px-2 py-4 d-flex justify-content-end">
       <h3 class="flex-grow-1 text-start mb-0 text-dark">CRYPTO ANALYSIS</h3>
       <nav class="nav nav-pills nav-fill links">
-        <router-link class="nav-link text-decoration-none" :to="{ name: 'Home' }" active-class="active bg-dark text-light" exact>Home</router-link>
-        <router-link class="nav-link text-decoration-none" :to="{ name: 'Portfolio' }" active-class="active bg-dark text-light">Portfolio</router-link>
+        <router-link class="nav-link text-decoration-none" :to="{ name: 'Home' }" active-class="active bg-dark text-light" exact>{{$t('menu.home')}}</router-link>
+        <router-link class="nav-link text-decoration-none" :to="{ name: 'Portfolio' }" active-class="active bg-dark text-light">{{$t('menu.portfolio')}}</router-link>
       </nav>
       <a class="nav-link text-decoration-none" @click.prevent="connectAPIs()" type="submit"><i class="mdi mdi-18px mdi-sync"></i></a>
     </nav>

@@ -11,7 +11,7 @@
             <thead class="table-light">
                 <tr>
                     <th></th>
-                    <th>QUANTITY</th>
+                    <th>{{$t('exchange.quantity')}}</th>
                     <th>USD</th>
                     <th>TRY</th>
                 </tr>
@@ -27,7 +27,7 @@
             <tfoot class="table-light">
                 <tr>
                     <th></th>
-                    <th class="text-end">GENEL TOPLAM:</th>
+                    <th class="text-end">{{$t('exchange.grandtotal')}}</th>
                     <th>{{  grandTotal.usd | formatUsd}}</th>
                     <th>{{  grandTotal.try | formatTry}}</th>
                 </tr>
