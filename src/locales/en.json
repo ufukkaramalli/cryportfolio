@@ -1,7 +1,12 @@
 {
   "exchange": {
+    "name":"EXCHANGE",
+    "currencyName":"USD",
     "quantity": "QUANTITY",
     "grandtotal": "GRAND TOTAL:"
+  },
+  "pool":{
+    "name":"POOL"
   },
   "about": {
     "welcome": "Welcome to the About page!"

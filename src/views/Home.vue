@@ -9,7 +9,7 @@
           BINANCE
         </template>
         <template #secondary>
-          EXCHANGE
+          {{$t('exchange.name')}}
         </template>
       </Exchange>
       <Exchange 
@@ -21,7 +21,7 @@
           FTX
         </template>
         <template #secondary>
-          EXCHANGE
+          {{$t('exchange.name')}}
         </template>
       </Exchange>
       <Exchange 
@@ -33,7 +33,7 @@
           EZIL
         </template>
         <template #secondary>
-          POOLS
+          {{$t('pool.name')}}
         </template>
       </Exchange>
     </div>

@@ -1,8 +1,8 @@
 <template>
     <div class="row g-0">
-      <DonutChart :type="'USD'" :height_pr="'350px'" :coin-data="getFTXvsBINANCEComparsion()"/>
-      <DonutChart :type="'TRY'" :height_pr="'350px'" :coin-data="getFTXvsBINANCEComparsionTry()" />
-      <DonutChart :type="'USD'" :height_pr="'350px'" :coin-data="getCoinsDataUsd()"/>
+      <DonutChart :type="'USDT'" :height_pr="'350px'" :coin-data="getFTXvsBINANCEComparsion()"/>
+      <DonutChart :type="currencyName" :height_pr="'350px'" :coin-data="getFTXvsBINANCEComparsionTry()" />
+      <DonutChart :type="'USDT'" :height_pr="'350px'" :coin-data="getCoinsDataUsd()"/>
     </div>
 </template>
 <script>
@@ -24,6 +24,9 @@ export default {
     DonutChart
   },
   computed:{
+    currencyName: function(){
+      return this.$t('exchange.currencyName')
+    },
     bankUsd:{
       get(){
         this.exchanges.bank.total.usd

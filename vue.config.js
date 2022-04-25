@@ -10,8 +10,8 @@ module.exports = {
     i18n: {
       locale: undefined,
       fallbackLocale: undefined,
-      localeDir: undefined,
-      enableInSFC: undefined,
+      localeDir: "locales",
+      enableInSFC: false,
       enableBridge: undefined
     }
   }

@@ -1,7 +1,12 @@
 {
   "exchange": {
-    "grandtotal": "Genel Toplam:",
-    "quantity": "Adet"
+    "name":"BORSA",
+    "currencyName":"TRY",
+    "grandtotal": "GENEL TOPLAM:",
+    "quantity": "ADET"
+  },
+  "pool":{
+    "name":"HAVUZ"
   },
   "about": {
     "welcome": "Welcome to the About page!"
