@@ -2,6 +2,8 @@
  
 #### Cryptocurrency portfolio tracking for EZIL mining pool, Binance and FTX exchanges.
 
+## Getting Started
+
 #### Install:
 ```
 npm install --save
