@@ -1,7 +1,7 @@
 {
   "exchange": {
-    "quantity": "",
-    "grandtotal": "Grand Total:"
+    "quantity": "QUANTITY",
+    "grandtotal": "GRAND TOTAL:"
   },
   "about": {
     "welcome": "Welcome to the About page!"
