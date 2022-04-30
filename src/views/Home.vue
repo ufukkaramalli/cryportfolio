@@ -1,6 +1,7 @@
 <template>
     <div class="row g-2">
       <Exchange
+        v-cloak
         :available="exchanges.binance.available" 
         :balances="exchanges.binance.balances" 
         :grand-total="exchanges.binance.total" 
@@ -12,7 +13,8 @@
           {{$t('exchange.name')}}
         </template>
       </Exchange>
-      <Exchange 
+      <Exchange
+        v-cloak 
         :available="exchanges.ftx.available"
         :balances="exchanges.ftx.balances" 
         :grand-total="exchanges.ftx.total"
@@ -24,7 +26,9 @@
           {{$t('exchange.name')}}
         </template>
       </Exchange>
-      <Exchange 
+      <keep-alive>
+      <Exchange
+        v-cloak 
         :available="pools.ezil.available"
         :balances="pools.ezil.balances" 
         :grand-total="pools.ezil.total"
@@ -36,6 +40,7 @@
           {{$t('pool.name')}}
         </template>
       </Exchange>
+      </keep-alive>
     </div>
 </template>
 <script>

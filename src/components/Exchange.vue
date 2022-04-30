@@ -19,27 +19,25 @@
             <transition-group name="table-complete" mode="out-in" tag="tbody">
             <tr v-for="balance in balances" :key="balance.asset" class="table-complete-item">
                 <th class="d-flex flex-fill align-items-center text-start align-middle cryptoasset">
-                    <IconCrypto :coinname="balance.asset" color="white" format="svg" />
+                    <IconCrypto v-cloak :coinname="balance.asset" color="white" format="svg" />
                     <span class="asset">{{balance.asset}}</span>
                 </th>
                 <td class="align-middle">
-                    {{ balance.total | formatTotal}}
-
+                    {{ balance.total | formatTotal }}
                 </td>
                 <td class="align-middle">
-                    {{  balance.usd | formatUsdt}}
-
+                    {{ balance.usdt | formatUsdt }}
                 </td>
-                <td class="align-middle">
-                    <!-- <i18n-n :value="balance.tryl" format="currency"></i18n-n> -->
-                </td>
+                <keep-alive>
+                    <local-price :priceData="{asset:balance.asset,quantitiy:balance.usdt}"/>
+                </keep-alive>
             </tr>
             </transition-group>
             <tfoot class="table-light">
                 <tr>
                     <th></th>
                     <th class="text-end">{{$t('exchange.grandtotal')}}</th>
-                    <th>{{  grandTotal.usd | formatUsdt}}</th>
+                    <th>{{  grandTotal.usdt | formatUsdt}}</th>
                     <th>
                         <!-- <i18n-n :value="grandTotal.try" format="currency"></i18n-n> -->
                     </th>
@@ -67,6 +65,7 @@
 <script>
 import Vue from "vue";
 import IconCrypto from "vue-cryptocurrency-icons";
+import localPrice from '@/components/LocalPrice';
 import { mapGetters } from 'vuex'
 Vue.use(IconCrypto);
   export default {
@@ -74,12 +73,16 @@ Vue.use(IconCrypto);
     data: () => ({
     }),
     props: ['balances','grandTotal','available'],
-    methods:{ 
+    components:{
+        localPrice
+    },
+    methods:{
     },
     computed:{
-      ...mapGetters({
-      isLoading: 'getIsLoading'
-      })
+        ...mapGetters({
+            isLoading: 'getIsLoading',
+            allMarketData: 'apiModule/getAllMarketData'
+        })
     },
     filters: {
         formatUsdt: function(v) {

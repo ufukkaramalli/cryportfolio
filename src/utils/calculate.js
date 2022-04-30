@@ -1,4 +1,4 @@
-export function calculateUSD(marketData,payload){
+export function calculateUSDT(marketData,payload){
     if(payload.asset === 'USDT' || payload.asset === 'USD'){
         return payload.value
     }else{

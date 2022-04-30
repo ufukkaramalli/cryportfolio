@@ -45,11 +45,11 @@ export default {
       return [
         {
           group: "BINANCE",
-          value: this.exchanges.binance.total.usd,
+          value: this.exchanges.binance.total.usdt,
         },
         {
           group: "FTX",
-          value: this.exchanges.ftx.total.usd,
+          value: this.exchanges.ftx.total.usdt,
         },
         {
           group: "BANK",
@@ -57,7 +57,7 @@ export default {
         },
         {
           group: "EZIL",
-          value: this.pools.ezil.total.usd
+          value: this.pools.ezil.total.usdt
         }
       ]
     },
@@ -91,21 +91,21 @@ export default {
       let ftx_result = []
       let ezil_result = []
       ezil.forEach(element => {
-        ezil_result.push({group:element.asset,value:element.usd})
+        ezil_result.push({group:element.asset,value:element.usdt})
       })
       ftx.forEach(element => {
         if(element.asset === "USD"){
           usd.group = "USDT"
-          usd.value = element.usd
+          usd.value = element.usdt
         }else{
-          ftx_result.push({group:element.asset,value:element.usd})
+          ftx_result.push({group:element.asset,value:element.usdt})
         }
       })
       binance.forEach(element => {
         if(element.asset === "USDT"){
-          binance_result.push({group:element.asset,value:element.usd+usd.value+bank.value})
+          binance_result.push({group:element.asset,value:element.usdt+usd.value+bank.value})
         }else{
-          binance_result.push({group:element.asset,value:element.usd})
+          binance_result.push({group:element.asset,value:element.usdt})
         }
       })
       let exc_result = binance_result.concat(ftx_result)
