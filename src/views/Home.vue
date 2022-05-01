@@ -26,7 +26,6 @@
           {{$t('exchange.name')}}
         </template>
       </Exchange>
-      <keep-alive>
       <Exchange
         v-cloak 
         :available="pools.ezil.available"
@@ -40,7 +39,6 @@
           {{$t('pool.name')}}
         </template>
       </Exchange>
-      </keep-alive>
     </div>
 </template>
 <script>

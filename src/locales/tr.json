@@ -3,7 +3,7 @@
     "name":"BORSA",
     "currencyName":"TRY",
     "grandtotal": "GENEL TOPLAM:",
-    "quantity": "ADET"
+    "quantity": "MİKTAR"
   },
   "pool":{
     "name":"HAVUZ"

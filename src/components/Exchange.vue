@@ -26,10 +26,10 @@
                     {{ balance.total | formatTotal }}
                 </td>
                 <td class="align-middle">
-                    {{ balance.usdt | formatUsdt }}
+                    {{ balance.usdt | formatTotal }}
                 </td>
                 <keep-alive>
-                    <local-price :priceData="{asset:balance.asset,quantitiy:balance.usdt}"/>
+                    <local-price :priceData="{asset:balance.asset,quantity:balance.usdt}"/>
                 </keep-alive>
             </tr>
             </transition-group>
@@ -37,10 +37,8 @@
                 <tr>
                     <th></th>
                     <th class="text-end">{{$t('exchange.grandtotal')}}</th>
-                    <th>{{  grandTotal.usdt | formatUsdt}}</th>
-                    <th>
-                        <!-- <i18n-n :value="grandTotal.try" format="currency"></i18n-n> -->
-                    </th>
+                    <th>{{  grandTotal.usdt | formatTotal}}</th>
+                    <local-price :priceData="{asset:'USDT',quantity:grandTotal.usdt}"/>
                 </tr>
             </tfoot>
         </table>
@@ -85,13 +83,6 @@ Vue.use(IconCrypto);
         })
     },
     filters: {
-        formatUsdt: function(v) {
-            var formatter = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            });
-            return formatter.format(v)
-        },
         formatTotal: function(v){
             if(v){
                 let value = v.toFixed(4)
