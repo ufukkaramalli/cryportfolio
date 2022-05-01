@@ -14,7 +14,7 @@
             :key="`lang${i}`"
             :value="lang"
           >
-            {{ lang }}
+            {{ lang.toUpperCase() }}
           </option>
         </select>
       </div>
@@ -59,7 +59,6 @@
     },
     watch: {
     $route(to, from) {
-      console.log(to)
       if(this.transitionName === null){
         this.transitionName = "slide-left"
       }else if(this.transitionName === "slide-right"){
