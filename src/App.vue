@@ -19,17 +19,19 @@
         </select>
       </div>
     </nav>
-    <main class="py-3" v-if="isLoading">
-      <transition :name="transitionName" mode="out-in">
-        <router-view/>
-      </transition>
-    </main>
-    <main v-else>
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <h1>Yükleniyor</h1>
+    <main class="py-3" style="height:100%;">
+      <transition  :name="transitionName" mode="out-in">
+        <router-view v-if="isLoading"/>
+        <div class="row w-100" v-else>
+          <div class="col-12">
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status" style="width: 4.5rem;height: 4.5rem;">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </transition>
     </main>
     <footer class="mt-auto text-white-50">
       <p>2022</p>

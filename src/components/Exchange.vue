@@ -1,5 +1,5 @@
 <template>
-<div class="col-12 col-md-6 exchange" v-if="isLoading">
+<div class="col-12 col-md-6 exchange" v-if="!balances.length == 0">
     <div class="card border-light p-3">
         <table class="table caption-top table-striped table-dark mb-0 table-hover">
             <caption>
@@ -44,21 +44,23 @@
         </table>
     </div>
 </div>
-<b-col v-else>
-    <b-table-simple dark striped caption-top responsive>
-        <caption><div class="d-flex align-items-center"><h1><slot name="header"></slot>/ </h1><small class="mt-3 ml-4"><slot name="secondary"></slot></small></div></caption>
-        <b-thead>
-            <b-tr>
-                <b-th>Information</b-th>
-            </b-tr>
-        </b-thead>
-        <b-tbody>
-            <b-tr>
-                <b-th>There is no data to show.</b-th>
-            </b-tr>
-        </b-tbody>
-    </b-table-simple>
-</b-col>
+<div class="col-12 col-md-6 exchange" v-else>
+    <div class="card border-light p-3">
+        <table class="table caption-top table-striped table-dark mb-0 table-hover">
+            <caption>
+                <div class="d-flex align-items-end text-light">
+                    <h1><slot name="header"></slot>|</h1>
+                    <h5 class="text-muted"><slot name="secondary"></slot></h5>
+                </div>
+            </caption>
+            <thead class="table-light">
+                <tr>
+                    <th class="text-start">Information:There is no data to show.</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 </template>
 <script>
 import Vue from "vue";

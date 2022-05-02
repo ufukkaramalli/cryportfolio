@@ -1,6 +1,7 @@
 <template>
     <div class="row g-2">
       <Exchange
+        key="binance"
         v-cloak
         :available="exchanges.binance.available" 
         :balances="exchanges.binance.balances" 
@@ -14,6 +15,7 @@
         </template>
       </Exchange>
       <Exchange
+        key="ftx"
         v-cloak 
         :available="exchanges.ftx.available"
         :balances="exchanges.ftx.balances" 
@@ -27,6 +29,7 @@
         </template>
       </Exchange>
       <Exchange
+        key="ezil"
         v-cloak 
         :available="pools.ezil.available"
         :balances="pools.ezil.balances" 
