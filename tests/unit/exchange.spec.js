@@ -14,10 +14,11 @@ describe('Exchange.vue', () => {
 
   let getters
   let store
+  const wrapper = null
   const balances = [{asset:"ETH",total:1,usd:2800,tryl:39000},{asset:"BTC",total:1,usd:2800,tryl:39000}]
   const available = 2
   const grandTotal = {usd:4,try:4}
-  
+
   beforeEach(() => {
     getters = {
       getIsLoading: () => true,
@@ -26,15 +27,17 @@ describe('Exchange.vue', () => {
     store = new Vuex.Store({
       getters
     })
-  })
 
-  it('Exchange: props.balances when passed', () => {
-    const wrapper = shallowMount(Exchange, {
+    wrapper = shallowMount(Exchange, {
       i18n,
       store, 
       localVue, 
       propsData: { balances,available,grandTotal }
     })
+
+  })
+
+  it('Exchange: props.balances when passed', () => {
     expect(wrapper.props('balances').length).to.equals(2)
     expect(wrapper.props('balances')[0].asset).to.equals("ETH")
     expect(wrapper.props('balances')[0].total).to.equals(1)
@@ -43,34 +46,16 @@ describe('Exchange.vue', () => {
   })
 
   it('Exchange: props.available when passed', () => {
-    const wrapper = shallowMount(Exchange, {
-      i18n,
-      store, 
-      localVue, 
-      propsData: { balances,available,grandTotal }
-    })
     expect(wrapper.props('available')).to.equals(2)
   })
 
   it('Exchange: props.grandTotal when passed', () => {
-    const wrapper = shallowMount(Exchange, {
-      i18n,
-      store, 
-      localVue, 
-      propsData: { balances,available,grandTotal }
-    })
     expect(Object.keys(wrapper.props('grandTotal')).length).to.equals(2)
     expect(wrapper.props('grandTotal').usd).to.equals(4)
     expect(wrapper.props('grandTotal').try).to.equals(4)
   })
 
   it('renders props.balances.asset when passed', () => {
-    const wrapper = shallowMount(Exchange, {
-      i18n,
-      store, 
-      localVue, 
-      propsData: { balances,available,grandTotal }
-    })
     const asset = wrapper.find('transition-group-stub > tr > .cryptoasset > .asset')
     expect(asset.text()).to.equals("ETH")
   })
