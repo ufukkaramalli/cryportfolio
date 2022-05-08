@@ -1,0 +1,21 @@
+{
+  "exchange": {
+    "name":"Austausch",
+    "currencyName":"EUR",
+    "quantity": "Menge",
+    "grandtotal": "Gesamtsumme:",
+    "information":{
+      "noData":"Information: Es gibt keine anzuzeigenden Daten."
+    }
+  },
+  "pool":{
+    "name":"Pool"
+  },
+  "about": {
+    "welcome": "Willkommen auf der About-Seite!"
+  },
+  "menu": {
+    "portfolio": "Portfolio",
+    "home": "Startseite"
+  }
+}

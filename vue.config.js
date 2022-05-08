@@ -3,7 +3,7 @@ module.exports = {
     'i18n'
   ],
   pwa: {
-    name: 'Binance',
+    name: 'Cryportfolio',
     manifestCrossorigin: 'anonymous'
   },
   pluginOptions: {

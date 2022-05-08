@@ -1,5 +1,5 @@
 <template>
-    <div class="row g-2">
+    <div class="row d-flex">
       <Exchange
         key="binance"
         v-cloak
@@ -9,9 +9,6 @@
       >
         <template #header>
           BINANCE
-        </template>
-        <template #secondary>
-          {{$t('exchange.name')}}
         </template>
       </Exchange>
       <Exchange
@@ -24,9 +21,6 @@
         <template #header>
           FTX
         </template>
-        <template #secondary>
-          {{$t('exchange.name')}}
-        </template>
       </Exchange>
       <Exchange
         key="ezil"
@@ -38,9 +32,6 @@
         <template #header>
           EZIL
         </template>
-        <template #secondary>
-          {{$t('pool.name')}}
-        </template>
       </Exchange>
     </div>
 </template>
@@ -49,10 +40,6 @@ import { mapGetters } from 'vuex'
 import Exchange from '@/components/Exchange.vue'
 export default {
   name: 'App',
-  data: function() {
-    return {
-    }
-  },
   components:{
     Exchange
   },

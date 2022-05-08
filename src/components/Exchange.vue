@@ -1,11 +1,12 @@
 <template>
-<div class="col-12 col-md-6 exchange" v-if="!balances.length == 0">
+<div class="col-12 mb-4 exchange" v-if="!balances.length == 0">
     <div class="card border-light p-3">
         <table class="table caption-top table-striped table-dark mb-0 table-hover">
             <caption>
                 <div class="d-flex align-items-end text-light">
-                    <h1><slot name="header"></slot>|</h1>
-                    <h5 class="text-muted"><slot name="secondary"></slot></h5>
+                    <h1>
+                        <slot name="header"></slot>
+                    </h1>
                 </div>
             </caption>
             <thead class="table-light">
@@ -16,7 +17,7 @@
                     <th>{{$t('exchange.currencyName')}}</th>
                 </tr>
             </thead>
-            <transition-group name="table-complete" mode="out-in" tag="tbody">
+            <tbody>
             <tr v-for="balance in balances" :key="balance.asset" class="table-complete-item">
                 <th class="d-flex flex-fill align-items-center text-start align-middle cryptoasset">
                     <IconCrypto v-cloak :coinname="balance.asset" color="white" format="svg" />
@@ -28,11 +29,9 @@
                 <td class="align-middle">
                     {{ balance.usdt | formatTotal }}
                 </td>
-                <keep-alive>
-                    <local-price :priceData="{asset:balance.asset,quantity:balance.usdt}"/>
-                </keep-alive>
+                <local-price :priceData="{asset:balance.asset,quantity:balance.usdt}"/>
             </tr>
-            </transition-group>
+            </tbody>
             <tfoot class="table-light">
                 <tr>
                     <th></th>
@@ -44,7 +43,7 @@
         </table>
     </div>
 </div>
-<div class="col-12 col-md-6 exchange" v-else>
+<div class="col-12 exchange" v-else>
     <div class="card border-light p-3">
         <table class="table caption-top table-striped table-dark mb-0 table-hover">
             <caption>
@@ -55,7 +54,7 @@
             </caption>
             <thead class="table-light">
                 <tr>
-                    <th class="text-start">Information:There is no data to show.</th>
+                    <th class="text-start">{{$t('exchange.information.noData')}}</th>
                 </tr>
             </thead>
         </table>
@@ -76,18 +75,15 @@ Vue.use(IconCrypto);
     components:{
         localPrice
     },
-    methods:{
-    },
     computed:{
         ...mapGetters({
-            isLoading: 'getIsLoading',
-            allMarketData: 'apiModule/getAllMarketData'
+            isLoading: 'getIsLoading'
         })
     },
     filters: {
         formatTotal: function(v){
             if(v){
-                let value = v.toFixed(4)
+                let value = v.toFixed(2)
                 return value
             }
             

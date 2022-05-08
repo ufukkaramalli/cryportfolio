@@ -12,5 +12,12 @@ export const numberFormats = {
         currency: 'TRY',
         currencyDisplay: 'symbol'
       }
+    },
+    'de': {
+      currency: {
+        style: 'currency',
+        currency: 'EUR',
+        currencyDisplay: 'symbol'
+      }
     }
   }

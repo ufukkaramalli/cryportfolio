@@ -1,24 +1,21 @@
 {
   "exchange": {
-    "name":"BORSA",
+    "name":"Borsa",
     "currencyName":"TRY",
-    "grandtotal": "GENEL TOPLAM:",
-    "quantity": "MİKTAR"
+    "grandtotal": "Genel Toplam:",
+    "quantity": "Miktar",
+    "information":{
+      "noData":"Bilgilendirme: Gösterilecek Herhangi Bir Veri Yok."
+    }
   },
   "pool":{
-    "name":"HAVUZ"
+    "name":"Havuz"
   },
   "about": {
     "welcome": "Welcome to the About page!"
   },
-  "main": {
-    "new_message": "no messages | one message | {count} messages",
-    "welcome": "Hello from {company}!"
-  },
   "menu": {
     "portfolio": "Portföy",
-    "home": "Ana Sayfa",
-    "tr": "Türkçe",
-    "en": "İngilizce"
+    "home": "Ana Sayfa"
   }
 }

@@ -13,27 +13,3 @@ export function calculateUSDT(marketData,payload){
         return a
     }
   }
-
-  export function calculateTRY(marketData,payload){
-    if(payload.asset === 'TRY' || payload.asset === 'TRYB'){
-        return payload.value
-    }else if(payload.asset === 'USDT' || payload.asset === 'USD'){
-        let price = 0
-        marketData.find(element => {
-            if('USDTTRY' === element.symbol){
-                price = element.lastPrice
-                }
-        })
-        let total = parseFloat(payload.value)*parseFloat(price)
-        return total
-    }else{
-        let price = 0
-        marketData.find(element => {
-            if('USDTTRY' === element.symbol){
-                price = element.lastPrice
-                }
-        })
-        let total = parseFloat(payload.value)*parseFloat(price)
-        return total
-    }
-  }

@@ -72,19 +72,15 @@ export default {
                 let binance_result = []
                 let ftx_result = []
                 let binance_grandTotal_usdt = 0
-                // let binance_grandTotal_try = 0
                 let ftx_grandTotal_usdt = 0
-                // let ftx_grandTotal_try = 0
                 binance.forEach(element => {
                    if(parseFloat(element.free) > 0 || parseFloat(element.availableWithoutBorrow) > 0){
                       element.where="BINANCE"
                       element.total=parseFloat(element.free)+parseFloat(element.locked)
                       element.usdt = calculateUSDT(rootGetters['apiModule/getAllMarketData'],{value:element.total,asset:element.asset})
-                      // element.tryl = calculateTRY(rootGetters['apiModule/getAllMarketData'],{value:element.usd,asset:element.asset})
                       delete element.free
                       delete element.locked
                       binance_grandTotal_usdt = binance_grandTotal_usdt + parseFloat(element.usdt)
-                      // binance_grandTotal_try = binance_grandTotal_try + parseFloat(element.tryl)
                       binance_result.push(element)
                    }
                 });
@@ -104,18 +100,17 @@ export default {
                     ftx_result.push(element)
                  }
                 })
+
                 // ASSIGNMENT SECTION //
                 /* BINANCE */
                 commit('setBinanceBalances',binance_result) 
                 commit('setBinanceAvailable',Object.keys(binance_result).length)
                 commit('setBinanceTotalUsdt',binance_grandTotal_usdt)
-                // commit('setBinanceTotalTry',binance_grandTotal_try)
 
                 /* FTX */
                 commit('setFtxBalances',ftx_result)
                 commit('setFtxAvailable',Object.keys(ftx_result).length)
                 commit('setFtxTotalUsdt',ftx_grandTotal_usdt)
-                // commit('setFtxTotalTry',ftx_grandTotal_try)
               })
         }
     },
