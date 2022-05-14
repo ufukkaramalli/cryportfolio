@@ -85,18 +85,16 @@ export default {
                    }
                 });
                 ftx.forEach(element => {
-                  if(parseFloat(element.free) > 0 || parseFloat(element.availableWithoutBorrow) > 0){
+                  if(parseFloat(element.free) > 0 || parseFloat(element.availableWithoutBorrow) > 0 || parseFloat(element.total)){
                     element.where="FTX"
                     element.asset=element.coin
                     element.usdt=element.usdValue
-                    // element.tryl = calculateTRY(rootGetters['apiModule/getAllMarketData'],{value:element.usd,asset:element.asset})
                     delete element.coin
                     delete element.availableWithoutBorrow
                     delete element.free
                     delete element.spotBorrow
                     delete element.usdValue
                     ftx_grandTotal_usdt = ftx_grandTotal_usdt + parseFloat(element.usdt)
-                    // ftx_grandTotal_try = ftx_grandTotal_try + parseFloat(element.tryl)
                     ftx_result.push(element)
                  }
                 })
