@@ -3,6 +3,11 @@
 
 # production
 /dist
+/tests/e2e/reports/
+selenium-debug.log
+chromedriver.log
+geckodriver.log
+package-lock.json
 
 # misc
 .DS_Store
