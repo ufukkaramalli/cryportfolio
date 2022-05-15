@@ -3,15 +3,15 @@ module.exports = {
     'i18n'
   ],
   pwa: {
-    name: 'Binance',
+    name: 'Cryportfolio',
     manifestCrossorigin: 'anonymous'
   },
   pluginOptions: {
     i18n: {
       locale: undefined,
       fallbackLocale: undefined,
-      localeDir: undefined,
-      enableInSFC: undefined,
+      localeDir: "locales",
+      enableInSFC: false,
       enableBridge: undefined
     }
   }

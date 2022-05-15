@@ -7,6 +7,7 @@
 selenium-debug.log
 chromedriver.log
 geckodriver.log
+package-lock.json
 
 # misc
 .DS_Store

@@ -1,6 +1,8 @@
 <template>
-    <div class="row g-2">
+    <div class="row d-flex">
       <Exchange
+        key="binance"
+        v-cloak
         :available="exchanges.binance.available" 
         :balances="exchanges.binance.balances" 
         :grand-total="exchanges.binance.total" 
@@ -8,11 +10,10 @@
         <template #header>
           BINANCE
         </template>
-        <template #secondary>
-          EXCHANGE
-        </template>
       </Exchange>
-      <Exchange 
+      <Exchange
+        key="ftx"
+        v-cloak 
         :available="exchanges.ftx.available"
         :balances="exchanges.ftx.balances" 
         :grand-total="exchanges.ftx.total"
@@ -20,20 +21,16 @@
         <template #header>
           FTX
         </template>
-        <template #secondary>
-          EXCHANGE
-        </template>
       </Exchange>
-      <Exchange 
+      <Exchange
+        key="ezil"
+        v-cloak 
         :available="pools.ezil.available"
         :balances="pools.ezil.balances" 
         :grand-total="pools.ezil.total"
       >
         <template #header>
           EZIL
-        </template>
-        <template #secondary>
-          POOLS
         </template>
       </Exchange>
     </div>
@@ -43,10 +40,6 @@ import { mapGetters } from 'vuex'
 import Exchange from '@/components/Exchange.vue'
 export default {
   name: 'App',
-  data: function() {
-    return {
-    }
-  },
   components:{
     Exchange
   },

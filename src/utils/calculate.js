@@ -1,4 +1,4 @@
-export function calculateUSD(marketData,payload){
+export function calculateUSDT(marketData,payload){
     if(payload.asset === 'USDT' || payload.asset === 'USD'){
         return payload.value
     }else{
@@ -11,29 +11,5 @@ export function calculateUSD(marketData,payload){
         })
         let a = parseFloat(payload.value)*parseFloat(price)
         return a
-    }
-  }
-
-  export function calculateTRY(marketData,payload){
-    if(payload.asset === 'TRY' || payload.asset === 'TRYB'){
-        return payload.value
-    }else if(payload.asset === 'USDT' || payload.asset === 'USD'){
-        let price = 0
-        marketData.find(element => {
-            if('USDTTRY' === element.symbol){
-                price = element.lastPrice
-                }
-        })
-        let total = parseFloat(payload.value)*parseFloat(price)
-        return total
-    }else{
-        let price = 0
-        marketData.find(element => {
-            if('USDTTRY' === element.symbol){
-                price = element.lastPrice
-                }
-        })
-        let total = parseFloat(payload.value)*parseFloat(price)
-        return total
     }
   }
