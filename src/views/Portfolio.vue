@@ -1,8 +1,8 @@
 <template>
     <div class="row g-0">
       <DonutChart :type="'USDT'" :height_pr="'350px'" :coin-data="getFTXvsBINANCEComparsion()"/>
-      <DonutChart :type="currencyName" :height_pr="'350px'" :coin-data="getFTXvsBINANCEComparsionTry()" />
-      <DonutChart :type="'USDT'" :height_pr="'350px'" :coin-data="getCoinsDataUsd()"/>
+      <DonutChart :type="currencyName" :height_pr="'350px'" :coin-data="localPrice" />
+      <DonutChart :type="'USDT'" :height_pr="'350px'" :coin-data="getCoinsDataUsdt()"/>
     </div>
 </template>
 <script>
@@ -12,18 +12,25 @@ export default {
   name: 'App',
   data: function() {
     return {
-      comparsions:{
-        FTXvsBINANCE:{
-          usd:[],
-          try:[]
-        }
-      },
+      coinData:[]
     }
   },
   components:{
     DonutChart
   },
+  created(){
+    this.localPrice = this.getFTXvsBINANCEComparsionLocale()
+  },
   computed:{
+    localPrice:{
+      get(){
+        return this.coinData
+      },
+      set(val){
+        this.coinData = []
+        this.coinData = this.getFTXvsBINANCEComparsionLocale()
+      }
+    },
     currencyName: function(){
       return this.$t('exchange.currencyName')
     },
@@ -37,10 +44,34 @@ export default {
     },
     ...mapGetters({
       exchanges: 'exchangeModule/getExchanges',
-      pools: 'poolModule/getPools'
+      pools: 'poolModule/getPools',
+      allMarketData: 'apiModule/getAllMarketData'
     })
   },
   methods: {
+    calculateLocalPrice(val){
+        let price = 0
+        let arr = []
+        let locale = "USDT"+this.$t('exchange.currencyName')
+        switch (locale) {
+        case 'USDTUSD':
+            price = val
+            return price
+            break;
+        case 'USDTTRY':
+            arr = this.allMarketData.filter(element => element.symbol === "USDTTRY")
+            price = val * arr[0].lastPrice
+            return price
+            break;
+        case 'USDTEUR':
+            arr = this.allMarketData.filter(element => element.symbol === "EURUSDT")
+            price = (val / arr[0].lastPrice)
+            return price
+            break;
+        default:
+            console.log(`Sorry, we are out of ${locale}.`);
+        }
+    },
     getFTXvsBINANCEComparsion(){
       return [
         {
@@ -61,27 +92,27 @@ export default {
         }
       ]
     },
-    getFTXvsBINANCEComparsionTry(){
+    getFTXvsBINANCEComparsionLocale(){
       return [
         {
           group: "BINANCE",
-          value: this.exchanges.binance.total.try,
+          value: this.calculateLocalPrice(this.exchanges.binance.total.usdt),
         },
         {
           group: "FTX",
-          value: this.exchanges.ftx.total.try,
+          value: this.calculateLocalPrice(this.exchanges.ftx.total.usdt),
         },
         {
           group: "BANK",
-          value: this.exchanges.bank.total.try,
+          value: this.calculateLocalPrice(this.exchanges.bank.total.usd),
         },
         {
           group: "EZIL",
-          value: this.pools.ezil.total.try
+          value: this.calculateLocalPrice(this.pools.ezil.total.usdt)
         }
       ]
     },
-    getCoinsDataUsd(){
+    getCoinsDataUsdt(){
       let binance = this.exchanges.binance.balances
       let ftx = this.exchanges.ftx.balances
       let bank = {group:"USDT",value:this.exchanges.bank.total.usd}
@@ -115,6 +146,20 @@ export default {
     ...mapMutations({
       excBankUsd:'exchangeModule/setBankTotalUsd'
       })
+  },
+  watch:{
+      'exchanges': {
+          handler() {
+              this.localPrice = this.getFTXvsBINANCEComparsionLocale()
+          },
+          deep: true
+      },
+      '$i18n.locale': {
+          handler(){
+              this.localPrice = this.getFTXvsBINANCEComparsionLocale()
+          },
+          deep:true
+      }
   }
 }
 </script>
