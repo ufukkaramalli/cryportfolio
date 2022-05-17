@@ -1,7 +1,7 @@
 <template>
 <div class="col-12 col-md-12 g-2">
     <div class="card p-2 text-dark" >
-        <VueTradingView style="height:600px" :options="{symbol: `${symbols}`,theme: 'dark',autosize: true,allow_symbol_change: true,}"/>
+        <VueTradingView style="height:600px" :options="{symbol: `${symbols}`,theme: 'dark',autosize: true,allow_symbol_change: false,show_popup_button: true,popup_width:1000,popup_height:650,hide_legend:true}"/>
     </div>
 </div>
 </template>
