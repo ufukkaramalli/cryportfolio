@@ -48,7 +48,6 @@
       languageArray: []
       }),
     async created(){
-      await this.connectAPIs()
       this.languageArray = this.$i18n.availableLocales
       
     },
@@ -88,8 +87,6 @@
         setTimeout(()=>{
           this.$store.commit('setIsLoading',true)
         },1000)
-        // console.log("Locale New Value:",newVal)
-        // console.log("Locale Old Value:",oldVal)
         },
         deep: true
     }
