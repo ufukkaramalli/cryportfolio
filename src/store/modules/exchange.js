@@ -68,8 +68,7 @@ export default {
     actions: {
         async createWalletData({dispatch}){
             dispatch('BinanceBalances')
-            dispatch('FtxBalances')
-           
+            dispatch('FtxBalances')     
         },
         async BinanceBalances({commit}){
             let binance = await axios.post('http://localhost:5000/binance/balances')
