@@ -1,5 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import * as StaticComponents from '@/router/staticLazyLoad'
+
+const Home = resolve => {
+  require.ensure(['@/views/Home.vue'], () => {
+    resolve(require('@/views/Home.vue'))
+  })
+}
+
+const Portfolio = resolve => {
+  require.ensure(['@/views/Portfolio.vue'], () => {
+    resolve(require('@/views/Portfolio.vue'))
+  })
+}
 
 Vue.use(VueRouter)
 
@@ -7,12 +20,20 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue')
+    components: {
+      default: Home,
+      Navigation: StaticComponents.Navigation,
+      Footer: StaticComponents.Footer
+    }
   },
   {
     path: '/Portfolio',
     name: 'Portfolio',
-    component: () => import('@/views/Portfolio.vue')
+    components: {
+      default: Portfolio,
+      Navigation: StaticComponents.Navigation,
+      Footer: StaticComponents.Footer
+    }
   }
 ]
 
