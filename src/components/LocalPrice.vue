@@ -1,5 +1,5 @@
 <template>
-    <td class="align-middle">{{$n(localPrice,'currency')}}</td>
+    <th style="width: 20%;" class="align-middle">{{$n(localPrice,'currency')}}</th>
 </template>
 <script>
 import { mapGetters } from 'vuex'

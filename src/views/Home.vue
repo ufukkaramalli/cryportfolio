@@ -1,8 +1,7 @@
 <template>
-    <div class="row d-flex">
+    <main class="row d-flex">
       <Exchange
         key="binance"
-        v-cloak
         :available="exchanges.binance.available" 
         :balances="exchanges.binance.balances" 
         :grand-total="exchanges.binance.total" 
@@ -13,7 +12,6 @@
       </Exchange>
       <Exchange
         key="ftx"
-        v-cloak 
         :available="exchanges.ftx.available"
         :balances="exchanges.ftx.balances" 
         :grand-total="exchanges.ftx.total"
@@ -24,7 +22,6 @@
       </Exchange>
       <Exchange
         key="ezil"
-        v-cloak 
         :available="pools.ezil.available"
         :balances="pools.ezil.balances" 
         :grand-total="pools.ezil.total"
@@ -33,7 +30,7 @@
           EZIL
         </template>
       </Exchange>
-    </div>
+    </main>
 </template>
 <script>
 import { mapGetters } from 'vuex'
