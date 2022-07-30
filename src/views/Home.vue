@@ -1,5 +1,5 @@
 <template>
-    <main class="row d-flex">
+    <div class="row d-flex">
       <Exchange
         key="binance"
         :available="exchanges.binance.available" 
@@ -30,7 +30,7 @@
           EZIL
         </template>
       </Exchange>
-    </main>
+    </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'

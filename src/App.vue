@@ -1,7 +1,7 @@
 <template>
-  <div id="wrapper">
+  <div id="wrapper" v-cloak>
     <router-view name="Navigation"></router-view>
-    <div class="container d-flex w-100 h-100 mx-auto flex-column py-4">
+    <main class="container d-flex w-100 h-100 mx-auto flex-column py-4">
         <transition  :name="transitionName" mode="out-in">
           <router-view v-if="isLoading"/>
           <div class="row w-100" v-else>
@@ -14,7 +14,7 @@
             </div>
           </div>
         </transition>
-    </div>
+    </main>
     <router-view name="Footer"></router-view>
   </div>
 </template>

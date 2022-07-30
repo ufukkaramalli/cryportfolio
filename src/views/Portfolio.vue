@@ -60,20 +60,12 @@ export default {
       let assets = []
       this.exchanges.binance.balances.filter(element => {
         if(element.asset !== 'USDT' && element.asset !== 'USD'){
-          if(element.asset !== 'LUNA'){
-            assets.push(`${element.where}:${element.asset}USDT*${element.total}`)
-          }else{
-            assets.push(`FTX:${element.asset}USDT*${element.total}`)
-          }
+          assets.push(`${element.where}:${element.asset}USDT*${element.total}`)
         }
       })
       this.exchanges.ftx.balances.filter(element => {
         if(element.asset !== 'USDT' && element.asset !== 'USD'){
-          if(element.asset !== 'LUNA'){
-            assets.push(`BINANCE:${element.asset}USDT*${element.total}`)
-          }else{
             assets.push(`${element.where}:${element.asset}USDT*${element.total}`)
-          }
         }
       })
       this.pools.ezil.balances.filter(element => {
