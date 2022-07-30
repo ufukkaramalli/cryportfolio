@@ -1,6 +1,6 @@
 <template>
-<div class="col-12 mb-4 exchange" v-if="!balances.length == 0">
-    <div class="card border-light p-3">
+<section class="col-12 mb-4 exchange" v-if="!balances.length == 0">
+    <figure class="card border-light p-3">
         <table class="table caption-top table-striped table-dark mb-0 table-hover">
             <caption>
                 <div class="d-flex align-items-end text-light">
@@ -10,40 +10,40 @@
                 </div>
             </caption>
             <thead class="table-light">
-                <tr>
-                    <th></th>
-                    <th>{{$t('exchange.quantity')}}</th>
-                    <th>USDT</th>
-                    <th>{{$t('exchange.currencyName')}}</th>
+                <tr class="d-flex">
+                    <th style="width: 60%;"></th>
+                    <th style="width: 20%;">{{$t('exchange.quantity')}}</th>
+                    <th style="width: 20%;">USDT</th>
+                    <th style="width: 20%;">{{$t('exchange.currencyName')}}</th>
                 </tr>
             </thead>
             <tbody>
-            <tr v-for="balance in balances" :key="balance.asset" class="table-complete-item">
-                <th class="d-flex flex-fill align-items-center text-start align-middle cryptoasset">
-                    <IconCrypto v-cloak :coinname="balance.asset" color="white" format="svg" />
-                    <span class="asset">{{balance.asset}}</span>
-                </th>
-                <td class="align-middle">
-                    {{ balance.total | formatTotal }}
-                </td>
-                <td class="align-middle">
-                    {{ balance.usdt | formatTotal }}
-                </td>
-                <local-price :priceData="{asset:balance.asset,quantity:balance.usdt}"/>
-            </tr>
+                <tr v-for="balance in balances" :key="balance.asset" class="table-complete-item d-flex">
+                    <th style="width: 60%;" class="d-flex flex-fill align-items-center text-start align-middle cryptoasset">
+                        <IconCrypto v-cloak :coinname="balance.asset" color="white" format="svg" />
+                        <span class="asset">{{balance.asset}}</span>
+                    </th>
+                    <th style="width: 20%;" class="align-middle">
+                        {{ balance.total | formatTotal }}
+                    </th>
+                    <th style="width: 20%;" class="align-middle">
+                        {{ balance.usdt | formatTotal }}
+                    </th>
+                    <local-price :priceData="{asset:balance.asset,quantity:balance.usdt}"/>
+                </tr>
             </tbody>
             <tfoot class="table-light">
-                <tr>
-                    <th></th>
-                    <th class="text-end">{{$t('exchange.grandtotal')}}</th>
-                    <th>{{  grandTotal.usdt | formatTotal}}</th>
+                <tr class="d-flex">
+                    <th style="width: 60%;"></th>
+                    <th style="width: 20%;" class="text-end">{{$t('exchange.grandtotal')}}</th>
+                    <th style="width: 20%;">{{  grandTotal.usdt | formatTotal}}</th>
                     <local-price :priceData="{asset:'USDT',quantity:grandTotal.usdt}"/>
                 </tr>
             </tfoot>
         </table>
-    </div>
-</div>
-<div class="col-12 exchange" v-else>
+    </figure>
+</section>
+<section class="col-12 exchange" v-else>
     <div class="card border-light p-3">
         <table class="table caption-top table-striped table-dark mb-0 table-hover">
             <caption>
@@ -59,7 +59,7 @@
             </thead>
         </table>
     </div>
-</div>
+</section>
 </template>
 <script>
 import Vue from "vue";

@@ -1,6 +1,6 @@
 <template>
     <div class="row g-0">
-      <DonutChart :type="'USDT'" :height_pr="'350px'" :coin-data="getFTXvsBINANCEComparsion()"/>
+      <TradingView :symb="symbols"/>
       <DonutChart :type="currencyName" :height_pr="'350px'" :coin-data="localPrice" />
       <DonutChart :type="'USDT'" :height_pr="'350px'" :coin-data="getCoinsDataUsdt()"/>
     </div>
@@ -8,6 +8,7 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import DonutChart from '@/components/DonutChart.vue'
+import TradingView from '@/components/TradingView.vue'
 export default {
   name: 'App',
   data: function() {
@@ -16,12 +17,18 @@ export default {
     }
   },
   components:{
-    DonutChart
+    DonutChart,
+    TradingView
   },
   created(){
     this.localPrice = this.getFTXvsBINANCEComparsionLocale()
   },
   computed:{
+    symbols: {
+      get(){
+       return this.trading()
+      }
+    },
     localPrice:{
       get(){
         return this.coinData
@@ -49,6 +56,24 @@ export default {
     })
   },
   methods: {
+    trading(){
+      let assets = []
+      this.exchanges.binance.balances.filter(element => {
+        if(element.asset !== 'USDT' && element.asset !== 'USD'){
+          assets.push(`${element.where}:${element.asset}USDT*${element.total}`)
+        }
+      })
+      this.exchanges.ftx.balances.filter(element => {
+        if(element.asset !== 'USDT' && element.asset !== 'USD'){
+            assets.push(`${element.where}:${element.asset}USDT*${element.total}`)
+        }
+      })
+      this.pools.ezil.balances.filter(element => {
+        assets.push(`BINANCE:${element.asset}USDT*${element.total}`)
+      })
+      let string = assets.join('+')
+      return string
+    },
     calculateLocalPrice(val){
         let price = 0
         let arr = []

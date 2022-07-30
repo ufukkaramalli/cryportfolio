@@ -1,4 +1,5 @@
-import {calculateUSDT,calculateTRY} from '@/utils/calculate'
+const calculateUSDT = require('@/utils/calculate')
+import axios from 'axios'
 export default {
     namespaced: true,
     state: {
@@ -65,51 +66,21 @@ export default {
         }
     },
     actions: {
-        async createWalletData({commit,rootGetters}){
-            await Promise.all([rootGetters['apiModule/getBinanceClient'].getAccountInformation(),rootGetters['apiModule/getFtxClient'].getBalances()]).then(response=>{
-                let binance = response[0].balances
-                let ftx = response[1].result
-                let binance_result = []
-                let ftx_result = []
-                let binance_grandTotal_usdt = 0
-                let ftx_grandTotal_usdt = 0
-                binance.forEach(element => {
-                   if(parseFloat(element.free) > 0 || parseFloat(element.availableWithoutBorrow) > 0){
-                      element.where="BINANCE"
-                      element.total=parseFloat(element.free)+parseFloat(element.locked)
-                      element.usdt = calculateUSDT(rootGetters['apiModule/getAllMarketData'],{value:element.total,asset:element.asset})
-                      delete element.free
-                      delete element.locked
-                      binance_grandTotal_usdt = binance_grandTotal_usdt + parseFloat(element.usdt)
-                      binance_result.push(element)
-                   }
-                });
-                ftx.forEach(element => {
-                  if(parseFloat(element.free) > 0 || parseFloat(element.availableWithoutBorrow) > 0 || parseFloat(element.total)){
-                    element.where="FTX"
-                    element.asset=element.coin
-                    element.usdt=element.usdValue
-                    delete element.coin
-                    delete element.availableWithoutBorrow
-                    delete element.free
-                    delete element.spotBorrow
-                    delete element.usdValue
-                    ftx_grandTotal_usdt = ftx_grandTotal_usdt + parseFloat(element.usdt)
-                    ftx_result.push(element)
-                 }
-                })
-
-                // ASSIGNMENT SECTION //
-                /* BINANCE */
-                commit('setBinanceBalances',binance_result) 
-                commit('setBinanceAvailable',Object.keys(binance_result).length)
-                commit('setBinanceTotalUsdt',binance_grandTotal_usdt)
-
-                /* FTX */
-                commit('setFtxBalances',ftx_result)
-                commit('setFtxAvailable',Object.keys(ftx_result).length)
-                commit('setFtxTotalUsdt',ftx_grandTotal_usdt)
-              })
+        async createWalletData({dispatch}){
+            dispatch('BinanceBalances')
+            dispatch('FtxBalances')     
+        },
+        async BinanceBalances({commit}){
+            let binance = await axios.post('http://localhost:5000/binance/balances')
+            commit('setBinanceBalances',binance.data.balances) 
+            commit('setBinanceAvailable',Object.keys(binance.data.balances).length)
+            commit('setBinanceTotalUsdt',parseFloat(binance.data.grandtotal))
+        },
+        async FtxBalances({commit}){
+            let ftx = await axios.post('http://localhost:5000/ftx/balances')
+            commit('setFtxBalances',ftx.data.balances)
+            commit('setFtxAvailable',Object.keys(ftx.data.balances).length)
+            commit('setFtxTotalUsdt',ftx.data.grandtotal)
         }
     },
   }

@@ -44,10 +44,7 @@ export default {
         async connect ({commit,dispatch}) {
             try {
                 commit('setIsLoading',false,{root:true})
-                var e = await axios.get('https://api.binance.com/api/v3/ticker/24hr')
-                commit('setAllMarketData',e.data)
-                commit('setBinance', new MainClient({api_key: process.env.VUE_APP_BINANCE_API_KEY, api_secret: process.env.VUE_APP_BINANCE_API_SECRET_KEY}))
-                commit('setFtx', new RestClient(process.env.VUE_APP_FTX_API_KEY, process.env.VUE_APP_FTX_API_SECRET_KEY))
+                await dispatch('get24hr')
                 commit('setEzil', new Ezil(process.env.VUE_APP_BINANCE_ETH_WALLET,process.env.VUE_APP_BINANCE_ZIL_WALLET))
                 // ROUTING FOR CREATE WALLET DATA
                 dispatch('exchangeModule/createWalletData',null,{root:true})
@@ -57,6 +54,10 @@ export default {
             } catch (error) {
                 console.log(error)
             }
+        },
+        async get24hr({commit}){
+            let e = await axios.get('http://localhost:5000/binance/24hr')
+            commit('setAllMarketData',e.data)
         }
     },
   };

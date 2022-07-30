@@ -1,5 +1,5 @@
 <template>
-    <td class="align-middle" v-cloak>{{$n(localPrice,'currency')}}</td>
+    <th style="width: 20%;" class="align-middle">{{$n(localPrice,'currency')}}</th>
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -9,7 +9,12 @@ data: () => ({
     price:null
 }),
 created(){
- this.localPrice = this.calculateLocalPrice()
+    this.localPrice = 0
+},
+mounted(){
+ setTimeout(() => {
+      this.localPrice = this.calculateLocalPrice()
+ },500)
 },
 methods:{
     calculateLocalPrice(){
