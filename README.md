@@ -27,15 +27,3 @@ Serve:
 ```
 npm run dev
 ```
-
-Build for Production:
-```
-npm run build
-```
-
-## For CORS Errors
-You can use the chrome extension to avoid cors errors while working on localhost.
-Please see the video for detailed information.
-https://www.youtube.com/watch?v=OHxSjbgUu4E
-## Screenview
-![This is an image](https://repository-images.githubusercontent.com/485022930/b9655c00-f83c-4317-b0c8-0f2f0f47ec84)
